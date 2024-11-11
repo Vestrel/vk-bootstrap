@@ -1936,9 +1936,9 @@ Result<Swapchain> SwapchainBuilder::build() const {
     VkPresentModeKHR present_mode = detail::find_present_mode(surface_support.present_modes, desired_present_modes);
 
     // VkSurfaceCapabilitiesKHR::supportedUsageFlags is only only valid for some present modes. For shared present modes, we should also check VkSharedPresentSurfaceCapabilitiesKHR::sharedPresentSupportedUsageFlags.
-    auto is_unextended_present_mode = [](VkPresentModeKHR present_mode) {
-        return (present_mode == VK_PRESENT_MODE_IMMEDIATE_KHR) || (present_mode == VK_PRESENT_MODE_MAILBOX_KHR) ||
-               (present_mode == VK_PRESENT_MODE_FIFO_KHR) || (present_mode == VK_PRESENT_MODE_FIFO_RELAXED_KHR);
+    auto is_unextended_present_mode = [](VkPresentModeKHR _present_mode) {
+        return (_present_mode == VK_PRESENT_MODE_IMMEDIATE_KHR) || (_present_mode == VK_PRESENT_MODE_MAILBOX_KHR) ||
+               (_present_mode == VK_PRESENT_MODE_FIFO_KHR) || (_present_mode == VK_PRESENT_MODE_FIFO_RELAXED_KHR);
     };
 
     if (is_unextended_present_mode(present_mode) &&
